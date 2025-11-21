@@ -1,0 +1,16 @@
+.image-container {
+  height: 50px;
+  width: 50px;
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.dropzone:hover {
+  border: 1px solid #c82c7d;
+}

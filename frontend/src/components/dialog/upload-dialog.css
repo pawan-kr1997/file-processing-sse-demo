@@ -1,0 +1,28 @@
+.content {
+  color: #fff;
+  border: 1px solid hsl(0, 0%, 20%);
+  border-radius: 15px;
+}
+
+.header {
+  border-bottom: 1px solid hsl(0, 0%, 20%);
+}
+
+.icon-border {
+  border: 7px solid #19161e;
+  border-radius: 100%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.icon-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 10px solid #291e29;
+  border-radius: 100%;
+}
