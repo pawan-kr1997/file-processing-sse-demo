@@ -14,7 +14,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   padding: 22px 15px;
   overflow: hidden;
-  width: 400px;
+  width: min(100%, 400px);
   background-image: url("./assets/grid.png");
   background-repeat: no-repeat;
   background-position: right -5px bottom -5px;

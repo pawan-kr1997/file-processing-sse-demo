@@ -1,9 +1,10 @@
 .container {
   width: min(100%, 700px);
   margin: auto;
+  line-height: 1.75;
+  padding: 10px;
   padding-top: 80px;
   padding-bottom: 80px;
-  line-height: 1.75;
 }
 
 .header {
