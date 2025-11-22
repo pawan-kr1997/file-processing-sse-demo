@@ -1,6 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
-import { FileContext, FileHandlerFactory, type FileHandler } from "./fileHelper.js";
-import { ProgressDecorator } from "./decorator.js";
+import { FileContext } from "./context/fileContext.js";
+import type { FileHandler } from "./handlers/fileHandler.js";
+import { FileHandlerFactory } from "./factory/fileHandlerFactory.js";
+import { ProgressDecorator } from "./decorators/progressDecorator.js";
 
 declare global {
     namespace Express {

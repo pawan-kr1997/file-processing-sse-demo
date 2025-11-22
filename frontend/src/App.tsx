@@ -19,7 +19,12 @@ function App() {
         <a className="instruction" href="/explanation">
           Read the full explanation
         </a>
-        <a className="instruction">View code source</a>
+        <a
+          href="https://github.com/pawan-kr1997/file-processing-sse-demo"
+          className="instruction"
+        >
+          View code source
+        </a>
       </div>
       <UploadDialog
         open={open}

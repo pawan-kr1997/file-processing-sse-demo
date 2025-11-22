@@ -1,4 +1,7 @@
-import type { FileContext, FileHandler } from "./fileHelper.js";
+// import type { FileContext, FileHandler } from "./fileHelper.js";
+
+import { FileContext } from "../context/fileContext.js";
+import type { FileHandler } from "../handlers/fileHandler.js";
 
 export class ProgressDecorator implements FileHandler {
     private adaptee: FileHandler;

@@ -7,7 +7,7 @@ import {
     fileValidationMiddleware,
     semanticProcessingMiddleware,
     speechScriptGenerationMiddleware,
-} from "./helpers/middlewares.js";
+} from "./pipeline/middlewares.js";
 
 const app = express();
 
