@@ -13,8 +13,8 @@ const app = express();
 
 app.use(cors());
 
-app.get(
-    "/",
+app.post(
+    "/upload",
     fileUploadMiddleware,
     fileValidationMiddleware,
     fileConversionMiddleware,
