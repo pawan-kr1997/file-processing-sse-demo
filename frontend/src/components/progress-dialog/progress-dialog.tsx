@@ -24,6 +24,7 @@ interface ProgressDialogProps {
 }
 
 const ProgressDialog: React.FC<ProgressDialogProps> = ({ open, setOpen }) => {
+  const URL = import.meta.env.VITE_URL;
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState("Uploading the file");
 
@@ -34,7 +35,7 @@ const ProgressDialog: React.FC<ProgressDialogProps> = ({ open, setOpen }) => {
 
   const fetchSSE = async () => {
     try {
-      const response = await fetch("http://localhost:8080/upload", {
+      const response = await fetch(`${URL}/upload`, {
         method: "POST",
         headers: {
           "Content-Type": "text/event-stream",
