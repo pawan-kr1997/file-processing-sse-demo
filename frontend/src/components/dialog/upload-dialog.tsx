@@ -79,7 +79,6 @@ const UploadDialog: React.FC<UploadDialogProps> = ({
                 onClick={() => {
                   setOpen(false);
                   setOpenProgress(true);
-                  console.log("hello");
                 }}
               >
                 <BsStars />

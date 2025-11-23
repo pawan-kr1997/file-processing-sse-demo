@@ -29,25 +29,64 @@ const ProgressDialog: React.FC<ProgressDialogProps> = ({ open, setOpen }) => {
 
   const isDone = progress >= 100;
 
+  // Create an AbortController
+  const abortController = new AbortController();
+
+  const fetchSSE = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/upload", {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/event-stream",
+        },
+        body: JSON.stringify({}),
+        signal: abortController.signal,
+      });
+
+      if (!response.body) {
+        throw new Error("No data found");
+      }
+
+      const reader = response.body
+        .pipeThrough(new TextDecoderStream())
+        .getReader();
+
+      while (true) {
+        const { value, done } = await reader.read();
+
+        if (done) break;
+
+        const lines = value.split("\n").filter((line) => line.trim() !== "");
+
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            const jsonString = line.replace("data: ", "");
+
+            const parsed = JSON.parse(jsonString);
+            setProgress(parsed.progress);
+            setStatus(parsed.status);
+          }
+        }
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name === "AbortError") {
+        console.log("Connection closed on unmount");
+      } else if (error instanceof Error) {
+        console.error("Error:", error.message);
+      } else {
+        console.error(error);
+      }
+    }
+  };
+
   useEffect(() => {
     if (open) {
-      const eventSource = new EventSource("http://localhost:8080/");
-
-      eventSource.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        console.log(`Upload: ${data.progress}% - ${data.status}`);
-
-        setProgress(data.progress);
-        setStatus(data.status);
-
-        if (data.status === "Completed") {
-          eventSource.close();
-          console.log("Upload complete!");
-        }
-      };
-
-      return () => eventSource.close();
+      fetchSSE();
     }
+
+    return () => {
+      abortController.abort();
+    };
   }, [open]);
 
   return (
