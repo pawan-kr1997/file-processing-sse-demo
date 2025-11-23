@@ -65,7 +65,7 @@ const UploadDialog: React.FC<UploadDialogProps> = ({
                 </Button>
               </HStack>
               <Dropzone
-                selectedFile={selectedFile}
+                // selectedFile={selectedFile}
                 setSelectedFile={setSelectedFile}
               />
             </Dialog.Body>

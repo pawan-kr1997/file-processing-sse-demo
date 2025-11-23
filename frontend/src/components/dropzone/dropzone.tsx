@@ -3,14 +3,11 @@ import { Box, FileUpload } from "@chakra-ui/react";
 import "./dropzone.css";
 
 interface DropzoneProps {
-  selectedFile: File | null;
+  selectedFile?: File | null;
   setSelectedFile: (file: File | null) => void;
 }
 
-const Dropzone: React.FC<DropzoneProps> = ({
-  selectedFile,
-  setSelectedFile,
-}) => {
+const Dropzone: React.FC<DropzoneProps> = ({ setSelectedFile }) => {
   return (
     <FileUpload.Root
       alignItems="stretch"
